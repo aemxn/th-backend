@@ -74,13 +74,10 @@ Assuming the route needs to fetch/send data to database.
 5. Create a model for this route
     - in `/models` folder
     - Models &mdash; only put database schema here, no business logic
-6. Create a view to be rendered for this route
-    - in `/views` folder
-    - Views &mdash; currently using Jade view engine. Soon to be changed. Data is fed by controller.
 
 ### Naming convention
 
-Naming convention is important for easy code navigation. Every routes, controllers, repository, models, and views are using the same name.
+Naming convention is important for easy code navigation. Every routes, controllers, repository, and models are using the same name.
 
 Depending on where the file came from, append it with its corresponding folder.
 
@@ -114,6 +111,10 @@ findTitle(title){
         });
 }
 ```
+
+### Front-end
+
+TODO
 
 [express-generator]: https://expressjs.com/en/starter/generator.html
 [structure-image]: https://i.imgur.com/yB8AqTj.jpg
