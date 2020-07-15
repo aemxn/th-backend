@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "server": "node ./bin/www",
-    "start": "nodemon ./bin/www"
+    "dev": "set NODE_ENV=development&& node ./bin/www",
+    "prod": "set NODE_ENV=production&& node ./bin/www",
+    "watch": "set NODE_ENV=production&& nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

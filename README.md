@@ -4,9 +4,11 @@
 
 Install dependencies - `npm install` 
 
-Normal start - `npm start`
+- Development - `npm run dev`
+- Production - `npm run prod`
+- Hot reload (production) - `npm run watch`
 
-Hot reload - `npm run server`
+*See `config/config.js` for environment config routing.*
 
 ### Bootstraping from scratch
 
@@ -42,3 +44,4 @@ $ npx sequelize version           # Prints the version number.
 
 Models definition: https://sequelize.org/v5/manual/models-definition.html
 Adding new column: https://dev.to/nedsoft/add-new-fields-to-existing-sequelize-migration-3527
+Sequelize config: https://sequelize.org/master/manual/migrations.html#the--code--sequelizerc--code--file

@@ -87,5 +87,10 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   // debug('Listening on ' + bind);
+  console.log('----------------------');
+  console.log('SERVER STARTED')
   console.log('Listening on ' + bind);
+  console.log('Environment: ' + process.env.NODE_ENV);
+  console.log('Database: ' + (process.env.NODE_ENV === 'development' ? process.env.DB_TEST_DATABASE : process.env.DB_DATABASE));
+  console.log('----------------------');
 }
