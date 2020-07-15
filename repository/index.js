@@ -1,4 +1,4 @@
-const entries = require('./entries');
+const entries = require('./entries.repository');
 
 module.exports = {
     entries
