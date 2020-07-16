@@ -43,8 +43,9 @@ module.exports = {
         return Entry.findByPk(id);
     },
 
-    latest() {
-        return Entry.findOne({
+    latest() { // return recent 5 entries
+        return Entry.findAll({
+            limit: 5,
             order: [['id', 'DESC']]
         });
     },

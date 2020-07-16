@@ -3,11 +3,7 @@ const repository = require('../repository/entries.repository');
 module.exports = {
     list(req, res) {
         return repository.list()
-        .then(entries => {
-        //   do anything here
-          res.status(200).send(entries);
-        //   res.render('entries', { title: 'Entries', items: entries });
-        })
+        .then(entries => res.status(200).send(entries))
         .catch(error => res.status(400).send(error));
     },
 
@@ -57,7 +53,7 @@ module.exports = {
 
         return repository
             .create(new_entry)
-            .then(entry => res.status(201).send({ message: 'Entry created successfully', entry: entry }))
+            .then(entry => res.status(201).send({ message: 'Entry created successfully', data: entry }))
             .catch(error => res.status(400).send(error));
     },
 
