@@ -57,20 +57,39 @@ module.exports = {
 
         return repository
             .create(new_entry)
-            .then(entry => res.status(201).send({ message: 'Entry Created Successfully.' }))
+            .then(entry => res.status(201).send({ message: 'Entry created successfully', entry: entry }))
             .catch(error => res.status(400).send(error));
     },
 
-    update(req){
+    update(req, res){
         var update_entry = {
             title: req.body.title,
             body: req.body.body,
             date: req.body.date
         };
-        return repository.update(req.params.id, update_entry);
+
+        repository.retrieve(req.params.id)
+        .then(entry => {
+            if(!entry) {
+                return res.status(404).send({ message: 'Entry Not Found' })
+            }
+            return repository.update(entry, update_entry)
+            .then(() => res.status(200).send({ message: 'Entry Updated Successfully.' }))
+            .catch((error) => res.status(400).send(error));
+        })
+        .catch(error => res.status(400).send(error));
     },
 
-    destroy(req){
-        return repository.destroy(req.params.id);
+    destroy(req, res){
+        repository.retrieve(req.params.id)
+        .then(entry => {
+            if(!entry) {
+                return res.status(404).send({ message: 'Entry Not Found' })
+            }
+            return repository.destroy(entry)
+            .then(() => res.status(200).send({ message: 'Entry Deleted Successfully.' }))
+            .catch(error => res.status(400).send(error));
+        })
+        .catch(error => res.status(400).send(error));
     }
 };

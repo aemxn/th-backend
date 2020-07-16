@@ -53,31 +53,11 @@ module.exports = {
         return Entry.create(new_entry);
     },
 
-    update(id, update_entry){
-        return Entry.findByPk(id)
-        .then(entry => {
-            if (!entry) {
-                return res.status(404).send({ message: 'Entry Not Found' });
-            }
-            return entry
-                .update(update_entry)
-                .then(() => res.status(200).send({ message: 'Entry Updated Successfully.' }))
-                .catch((error) => res.status(400).send(error));
-        })
-        .catch((error) => res.status(400).send(error));
+    update(entry, update_entry){
+        return entry.update(update_entry);
     },
 
-    destroy(id){
-        return Entry.findByPk(id)
-            .then(entry => {
-                if (!entry) {
-                    return res.status(400).send({ message: 'Entry Not Found' });
-                }
-                return entry
-                    .destroy()
-                    .then(() => res.status(200).send({ message: 'Entry Deleted Successfully.' }))
-                    .catch(error => res.status(400).send(error));
-            })
-            .catch(error => res.status(400).send(error));
+    destroy(entry){
+        return entry.destroy();
     }
 };
