@@ -5,8 +5,4 @@
 [] Auto-increment title AD
 [x] Search by date
 [] Escape body before inserting SQL
-
-Front end
-[] calendar
-[] search by text
-[] search by date
+[] Export
