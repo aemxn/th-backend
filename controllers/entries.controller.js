@@ -1,6 +1,26 @@
 const repository = require('../repository/entries.repository');
+const util = require('../utils/utils.js');
 
 module.exports = {
+    exportAll(req, res) {
+        return repository.list()
+        .then(entries => {
+            let json = { 'entries' : [] };
+            for (entry of entries) {
+                json.entries.push(entry);
+            }
+            util.writeToFile(json, function callback(filename, data) {
+                data = JSON.parse(data);
+                res.status(200).send({
+                    'message': 'Successfully exported',
+                    'filename': `${filename}`,
+                    'length': data.entries.length,
+                    'last_row': data.entries[data.entries.length-1]});
+            });
+        })
+        .catch(error => res.status(400).send(error));
+    },
+
     list(req, res) {
         return repository.list()
         .then(entries => res.status(200).send(entries))

@@ -1,10 +1,22 @@
 const moment = require('moment');
+const fs = require('fs');
 
 module.exports = {
-    formatDate: function(date) {
+
+    writeToFile: function(json, callback) {
+        let data = JSON.stringify(json);
+        let path = '../';
+        let filename = 'TH-' + this.formatFilename(new Date()) + '.json';
+
+        fs.writeFile(`${path + filename}`, data, 'utf8', function cb(err) {
+            if (err) return err;
+            callback(filename, data);
+        });
+    },
+
+    formatFilename: function(date) {
         moment.locale('ms-my');
-        var old_date = moment(date, 'D/M/YYYY');
-        return moment(old_date).format('L');
+        return moment(date).format('YYYY-MM-DD.hhmmss');
     },
 
     // escape character for MySQL purpose

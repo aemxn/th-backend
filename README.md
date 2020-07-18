@@ -8,6 +8,7 @@ Bridging the past and the future.
 2. Install dependencies - `npm install` 
 3. Running:
    - Development - `$ npm run dev`
+   - Hot reload (development) - `$ npm run dev-watch`
    - Production - `$ npm run prod`
    - Hot reload (production) - `$ npm run watch`
 

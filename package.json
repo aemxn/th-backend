@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "set NODE_ENV=development&& node ./bin/www",
+    "dev-watch": "set NODE_ENV=development&& nodemon ./bin/www",
     "prod": "set NODE_ENV=production&& node ./bin/www",
     "watch": "set NODE_ENV=production&& nodemon ./bin/www"
   },

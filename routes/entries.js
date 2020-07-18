@@ -7,6 +7,7 @@ router.get('/find-title', controller.findTitle);
 router.get('/search', controller.search);
 router.get('/search-date', controller.searchDate);
 router.get('/latest', controller.latest);
+router.get('/export', controller.exportAll);
 router.get('/:id', controller.retrieve);
 
 router.post('/', controller.create);
