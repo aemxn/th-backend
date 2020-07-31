@@ -1,4 +1,5 @@
-# TH-Backend
+# Juno
+### Server
 
 Bridging the past and the future.
 
@@ -115,7 +116,7 @@ findTitle(title){
 
 ### Front-end
 
-https://github.com/aemxn/th-frontend
+https://github.com/aemxn/juno-ui
 
 [express-generator]: https://expressjs.com/en/starter/generator.html
 [structure-image]: https://i.imgur.com/yB8AqTj.jpg
