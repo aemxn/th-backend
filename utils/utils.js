@@ -6,7 +6,7 @@ module.exports = {
     writeToFile: function(json, callback) {
         let data = JSON.stringify(json);
         let path = '../';
-        let filename = 'TH-' + this.formatFilename(new Date()) + '.json';
+        let filename = 'juno-export-' + this.formatFilename(new Date()) + '.json';
 
         fs.writeFile(`${path + filename}`, data, 'utf8', function cb(err) {
             if (err) return err;
