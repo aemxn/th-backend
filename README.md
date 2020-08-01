@@ -1,12 +1,19 @@
 # Juno
-### Server
+**Server**
 
-Bridging the past and the future.
+Description: Bridging the past and the future.
 
 ## Starting
 
+**System dependencies:**
+
+- MySQL (v8+)
+- Node (v12+), npm (v6+)
+
+Clone the repo then,
+
 1. Set database config in `.env`
-2. Install dependencies - `npm install` 
+2. Install dependencies - `npm i` 
 3. Running:
    - Development - `$ npm run dev`
    - Hot reload (development) - `$ npm run dev-watch`
