@@ -42,8 +42,15 @@ module.exports = {
     },
 
     search(req, res) {
-        return repository.search(req.body.query)
-        .then(entries => res.status(200).send(entries))
+        const { page, size, query } = req.query;
+      
+        const { limit, offset } = util.getPagination(page, size);
+        
+        return repository.search({ query, limit, offset })
+        .then(entries => {
+            const paged = util.getPagingData(entries, page, limit);
+            res.status(200).send(paged)
+        })
         .catch(error => res.status(400).send(error));
     },
 

@@ -4,7 +4,11 @@ const { Op } = require('sequelize');
 module.exports = {
 
     list({ condition, limit, offset }) {
-        return Entry.findAndCountAll({ where: condition, limit, offset });
+        return Entry.findAndCountAll({
+            where: condition,
+            limit,
+            offset
+        });
     },
 
     findTitle(title){
@@ -18,14 +22,16 @@ module.exports = {
     },
 
     // SELECT * FROM entries WHERE title LIKE '%query%' OR body LIKE '%query%'
-    search(query){
-        return Entry.findAll({
+    search({ query, limit, offset }){
+        return Entry.findAndCountAll({
                 where: {
                     [Op.or]: [
                         { title: { [Op.substring]: query } },
                         { body: { [Op.substring]: query } }
-                    ]
-                }
+                    ],
+                },
+                limit,
+                offset
             });
     },
 
