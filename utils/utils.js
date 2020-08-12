@@ -2,6 +2,21 @@ const moment = require('moment');
 const fs = require('fs');
 
 module.exports = {
+    
+    getPagination: function (page, size) {
+        const limit = size ? +size : 5;
+        const offset = page ? page * limit : 0;
+    
+        return { limit, offset };
+    },
+
+    getPagingData: function (data, page, limit) {
+        const { count: totalItems, rows: entries } = data;
+        const currentPage = page ? +page : 0;
+        const totalPages = Math.ceil(totalItems / limit);
+    
+        return { totalPages, currentPage, totalItems, entries };
+    },
 
     writeToFile: function(json, callback) {
         let data = JSON.stringify(json);
