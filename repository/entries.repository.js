@@ -3,9 +3,8 @@ const { Op } = require('sequelize');
 
 module.exports = {
 
-    list({ condition, limit, offset }) {
+    list({ limit, offset }) {
         return Entry.findAndCountAll({
-            where: condition,
             limit,
             offset
         });

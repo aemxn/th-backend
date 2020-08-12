@@ -23,11 +23,9 @@ module.exports = {
 
     list(req, res) {
         const { page, size, title } = req.query;
-        var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-      
         const { limit, offset } = util.getPagination(page, size);
 
-        return repository.list({ condition, limit, offset })
+        return repository.list({ limit, offset })
         .then(entries => {
             const paged = util.getPagingData(entries, page, limit);
             res.status(200).send(paged)
