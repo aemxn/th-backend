@@ -22,15 +22,17 @@ module.exports = {
     },
 
     list(req, res) {
-        const { page, size, title } = req.query;
+        const { page, size } = req.query;
         const { limit, offset } = util.getPagination(page, size);
 
+        if (page < 0) return res.status(400).send({ message: 'Page must be positive number'});
+        
         return repository.list({ limit, offset })
         .then(entries => {
             const paged = util.getPagingData(entries, page, limit);
             res.status(200).send(paged)
         })
-        .catch(error => res.status(400).send(error));
+        .catch(error => res.status(400).send({ message: error.name }));
     },
 
     findTitle(req, res) {
