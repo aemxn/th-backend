@@ -25,7 +25,8 @@ module.exports = {
         const { page, size } = req.query;
         const { limit, offset } = util.getPagination(page, size);
 
-        if (page < 0 || size < 0) return res.status(400).send({ message: 'Page/size must be positive number'});
+        if (page < 0 || size < 0 || !parseInt(page) || !parseInt(size))
+        return res.status(400).send({ message: 'Page/size must be positive number'});
 
         return repository.list({ limit, offset })
         .then(entries => {
