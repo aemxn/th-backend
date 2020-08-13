@@ -3,6 +3,10 @@ const { Op } = require('sequelize');
 
 module.exports = {
 
+    all() {
+        return Entry.findAll();
+    },
+
     list({ limit, offset }) {
         return Entry.findAndCountAll({
             limit,

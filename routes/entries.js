@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/entries.controller')
 
-router.get('/', controller.list);
+router.get('/list', controller.list);
 router.get('/find-title', controller.findTitle);
 router.get('/search', controller.search);
 router.get('/search-date', controller.searchDate);

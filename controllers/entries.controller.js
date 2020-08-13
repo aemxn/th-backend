@@ -3,7 +3,7 @@ const util = require('../utils/utils.js');
 
 module.exports = {
     exportAll(req, res) {
-        return repository.list()
+        return repository.all()
         .then(entries => {
             let json = { 'entries' : [] };
             for (entry of entries) {
