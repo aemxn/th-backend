@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.status(200).send({
     status: 200,
-    message: 'TH Backend API v1'
+    message: 'Juno Backend API v1'
   });
 });
 
