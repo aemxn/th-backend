@@ -22,9 +22,11 @@ module.exports = {
     },
 
     list(req, res) {
-        const { page, size } = req.query;
-        if (page < 0 || size < 0 || !parseInt(page) || !parseInt(size))
-        return res.status(400).send({ message: 'Page/size must be positive number'});
+        const page = parseInt(req.query.page);
+        const size = parseInt(req.query.size);
+
+        if (page < 0 || size < 0 || !Number.isInteger(page) || !Number.isInteger(size))
+            return res.status(400).send({ message: 'Page/size must be positive number'});
         
         const { limit, offset } = util.getPagination(page, size);
 
