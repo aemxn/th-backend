@@ -7,13 +7,6 @@ module.exports = {
         return Entry.findAll();
     },
 
-    list({ limit, offset }) {
-        return Entry.findAndCountAll({
-            limit,
-            offset
-        });
-    },
-
     findTitle(title){
         return Entry.findAll({
                 where: {
@@ -25,25 +18,16 @@ module.exports = {
     },
 
     // SELECT * FROM entries WHERE title LIKE '%query%' OR body LIKE '%query%'
-    search({ query, limit, offset }){
+    explore({ query, date, limit, offset }){
+        console.log({ date, limit, offset });
         return Entry.findAndCountAll({
                 where: {
                     [Op.or]: [
                         { title: { [Op.substring]: query } },
                         { body: { [Op.substring]: query } }
                     ],
-                },
-                limit,
-                offset
-            });
-    },
-
-    searchDate({ date, limit, offset }){
-        console.log({ date, limit, offset });
-        return Entry.findAndCountAll({
-                where: {
                     date: {
-                        [Op.like]: date
+                        [Op.substring]: date
                     }
                 },
                 limit,
