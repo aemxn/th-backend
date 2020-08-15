@@ -38,13 +38,16 @@ module.exports = {
             });
     },
 
-    searchDate(date){
-        return Entry.findAll({
+    searchDate({ date, limit, offset }){
+        console.log({ date, limit, offset });
+        return Entry.findAndCountAll({
                 where: {
                     date: {
                         [Op.like]: date
                     }
-                }
+                },
+                limit,
+                offset
             });
     },
 

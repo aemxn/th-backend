@@ -58,8 +58,14 @@ module.exports = {
     },
 
     searchDate(req, res) {
-        return repository.searchDate(req.body.date)
-        .then(entries => res.status(200).send(entries))
+        const { page, size, date } = req.query;
+        const { limit, offset } = util.getPagination(page, size);
+        
+        return repository.searchDate({ date, limit, offset })
+        .then(entries => {
+            const paged = util.getPagingData(entries, page, limit);
+            res.status(200).send(paged);
+        })
         .catch(error => res.status(400).send(error));
     },
 
