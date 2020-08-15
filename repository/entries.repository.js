@@ -19,7 +19,7 @@ module.exports = {
 
     // SELECT * FROM entries WHERE title LIKE '%query%' OR body LIKE '%query%'
     explore({ query, date, limit, offset }){
-        console.log({ date, limit, offset });
+
         return Entry.findAndCountAll({
                 where: {
                     [Op.or]: [
@@ -31,7 +31,8 @@ module.exports = {
                     }
                 },
                 limit,
-                offset
+                offset,
+                order: [['id', 'DESC']]
             });
     },
 
