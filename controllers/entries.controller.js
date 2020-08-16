@@ -101,5 +101,57 @@ module.exports = {
             .catch(error => res.status(400).send(error));
         })
         .catch(error => res.status(400).send(error));
+    },
+
+    async groupByYear(req, res) {
+
+        const promiseYear = await getYear();
+        Promise.all(promiseYear)
+        .then(async result => {
+            let years = [];
+
+            result.forEach(stuff => {
+                for (key in stuff) {
+                    if (stuff.hasOwnProperty(key)) {
+                        const val = stuff[key];
+                        if (key === "YEAR") years.push(val);
+                    }
+                }
+            });
+            console.log("years", years);
+
+            const promises = years.map(async year => {
+                const mapYearMonth = await getMonthByYear(year);
+                // FIXME why can't i just construct array here with year as key
+                return [year, mapYearMonth];
+            });
+            
+            const promiseResult = await Promise.all(promises);
+
+            return promiseResult;
+        })
+        .then(results => {
+            // why do i have to do it here
+            let combined = {};
+            results.forEach(result => {
+                let year = result[0];
+                combined[year] = result[1];
+            });
+            console.log(combined);
+            // the code's getting smellier
+            return res.status(200).send(combined)
+        })
+        .catch(error => res.status(400).send({ message : error }));
     }
 };
+
+// Raw query promises
+const getMonthByYear = year => {
+    let queryYearMonth = `SELECT MONTH(date) month, COUNT(*) count FROM \`entries\` WHERE YEAR(date) = '${year}' GROUP BY MONTH(date) ORDER BY month ASC`;
+    return repository.customQuery(queryYearMonth);
+}
+
+const getYear = _ => {
+    let queryYear = "SELECT YEAR(date) YEAR, COUNT(*) COUNT FROM `entries` GROUP BY year(date) ORDER BY YEAR ASC";
+    return repository.customQuery(queryYear)
+}

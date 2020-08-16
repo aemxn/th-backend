@@ -57,5 +57,10 @@ module.exports = {
 
     destroy(entry){
         return entry.destroy();
+    },
+
+    async customQuery(query) {
+        const [results, metadata] = await Entry.sequelize.query(query);
+        return results;
     }
 };

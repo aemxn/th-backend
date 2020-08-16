@@ -125,5 +125,12 @@ findTitle(title){
 
 https://github.com/aemxn/juno-ui
 
+### Read
+
+- [Promise chaining][promise-chaining]
+- [Async-await in loops][async-loop]
+
 [express-generator]: https://expressjs.com/en/starter/generator.html
 [structure-image]: https://i.imgur.com/yB8AqTj.jpg
+[promise-chaining]: https://javascript.info/promise-chaining
+[async-loop]: https://zellwk.com/blog/async-await-in-loops/

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/entries.controller')
 
+router.get('/groupByYear', controller.groupByYear);
 router.get('/explore', controller.explore);
 router.get('/find-title', controller.findTitle);
 router.get('/latest', controller.latest);
