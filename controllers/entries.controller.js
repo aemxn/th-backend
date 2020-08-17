@@ -134,7 +134,7 @@ module.exports = {
 
 // Raw query promises
 const getYear = _ => {
-    let queryYear = "SELECT YEAR(date) YEAR, COUNT(*) COUNT FROM `entries` GROUP BY year(date) ORDER BY YEAR ASC";
+    let queryYear = "SELECT YEAR(date) YEAR, COUNT(*) COUNT FROM `entries` GROUP BY year(date) ORDER BY YEAR DESC";
     return repository.customQuery(queryYear)
 }
 
@@ -153,7 +153,7 @@ const computeYear = result => {
 }
 
 const getMonthByYear = year => {
-    let queryYearMonth = `SELECT MONTH(date) month, COUNT(*) count FROM \`entries\` WHERE YEAR(date) = '${year}' GROUP BY MONTH(date) ORDER BY month ASC`;
+    let queryYearMonth = `SELECT MONTH(date) month, COUNT(*) count FROM \`entries\` WHERE YEAR(date) = '${year}' GROUP BY MONTH(date) ORDER BY month DESC`;
     return repository.customQuery(queryYearMonth);
 }
 
