@@ -108,17 +108,8 @@ module.exports = {
         const promiseYear = await getYear();
         Promise.all(promiseYear)
         .then(async result => {
-            let years = [];
 
-            result.forEach(stuff => {
-                for (key in stuff) {
-                    if (stuff.hasOwnProperty(key)) {
-                        const val = stuff[key];
-                        if (key === "YEAR") years.push(val);
-                    }
-                }
-            });
-            console.log("years", years);
+            let years = computeYear(result);
 
             const promises = years.map(async year => {
                 const mapYearMonth = await getMonthByYear(year);
@@ -132,12 +123,8 @@ module.exports = {
         })
         .then(results => {
             // why do i have to do it here
-            let combined = {};
-            results.forEach(result => {
-                let year = result[0];
-                combined[year] = result[1];
-            });
-            console.log(combined);
+            let combined = computeMonthByYear(results);
+
             // the code's getting smellier
             return res.status(200).send(combined)
         })
@@ -146,12 +133,41 @@ module.exports = {
 };
 
 // Raw query promises
+const getYear = _ => {
+    let queryYear = "SELECT YEAR(date) YEAR, COUNT(*) COUNT FROM `entries` GROUP BY year(date) ORDER BY YEAR ASC";
+    return repository.customQuery(queryYear)
+}
+
+const computeYear = result => {
+    let years = [];
+    result.forEach(stuff => {
+        for (key in stuff) {
+            if (stuff.hasOwnProperty(key)) {
+                const val = stuff[key];
+                if (key === "YEAR") years.push(val);
+            }
+        }
+    });
+    console.log("years", years);
+    return years;
+}
+
 const getMonthByYear = year => {
     let queryYearMonth = `SELECT MONTH(date) month, COUNT(*) count FROM \`entries\` WHERE YEAR(date) = '${year}' GROUP BY MONTH(date) ORDER BY month ASC`;
     return repository.customQuery(queryYearMonth);
 }
 
-const getYear = _ => {
-    let queryYear = "SELECT YEAR(date) YEAR, COUNT(*) COUNT FROM `entries` GROUP BY year(date) ORDER BY YEAR ASC";
-    return repository.customQuery(queryYear)
+const computeMonthByYear = results => {
+    let json = {};
+    let yearMonthsData = [];
+    results.forEach(result => {
+        let yearMonths = {};
+        let year = result[0];
+        let monthsData = result[1];
+        yearMonths["year"] = year;
+        yearMonths["data"] = monthsData;
+        yearMonthsData.push(yearMonths);
+    });
+    json["data"] = yearMonthsData;
+    return json;
 }
