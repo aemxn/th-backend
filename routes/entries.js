@@ -4,6 +4,7 @@ const controller = require('../controllers/entries.controller')
 
 router.get('/groupByYear', controller.groupByYear);
 router.get('/explore', controller.explore);
+router.get('/explore/month', controller.exploreMonth);
 router.get('/find-title', controller.findTitle);
 router.get('/latest', controller.latest);
 router.get('/export', controller.exportAll);

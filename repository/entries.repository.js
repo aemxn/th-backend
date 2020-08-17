@@ -36,6 +36,18 @@ module.exports = {
             });
     },
 
+    // SELECT `id`, `title`, `date`, `body`, `createdAt`, `updatedAt` FROM `Entries` AS `Entry` WHERE concat(year(`date`), '-', month(`date`), '2020-8') IS NULL ORDER BY `Entry`.`id` DESC LIMIT 0, 5;
+    async exploreMonth({ date, limit, offset }) {
+        let criteria = Entry.sequelize.fn("concat", Entry.sequelize.fn("year", Entry.sequelize.col("date")), "-", Entry.sequelize.fn("month", Entry.sequelize.col("date")));
+
+        return Entry.findAndCountAll({
+            where: Entry.sequelize.where(criteria, date),
+            limit,
+            offset,
+            order: [['id', 'DESC']]
+        });
+    },
+
     retrieve(id){
         return Entry.findByPk(id);
     },

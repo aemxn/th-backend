@@ -39,6 +39,18 @@ module.exports = {
         .catch(error => res.status(400).send(error));
     },
 
+    exploreMonth(req, res) {
+        const { page, size, date } = req.query;
+        const { limit, offset } = util.getPagination(page, size);
+        
+        return repository.exploreMonth({ date, limit, offset })
+        .then(entries => {
+            const paged = util.getPagingData(entries, page, limit);
+            res.status(200).send(paged);
+        })
+        .catch(error => res.status(400).send(error));
+    },
+
     retrieve(req, res) {
         return repository.retrieve(req.params.id)
         .then(entry => {
@@ -148,7 +160,6 @@ const computeYear = result => {
             }
         }
     });
-    console.log("years", years);
     return years;
 }
 
