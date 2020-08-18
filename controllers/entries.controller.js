@@ -96,7 +96,7 @@ module.exports = {
                 return res.status(404).send({ message: 'Entry Not Found' })
             }
             return repository.update(entry, update_entry)
-            .then(() => res.status(200).send({ message: 'Update success' }))
+            .then(() => res.status(200).send({ message: 'Update success!' }))
             .catch((error) => res.status(400).send({ message: 'Update failed', data: error }));
         })
         .catch(error => res.status(400).send({ message: 'Update failed. Code: 43', data: error }));
@@ -109,7 +109,7 @@ module.exports = {
                 return res.status(404).send({ message: 'Entry Not Found' })
             }
             return repository.destroy(entry)
-            .then(() => res.status(200).send({ message: 'Delete success' }))
+            .then(() => res.status(200).send({ message: 'Delete success!' }))
             .catch(error => res.status(400).send({ message: 'Delete failed', data: error }));
         })
         .catch(error => res.status(400).send({ message: 'Delete failed. Code: 42', data: error }));
