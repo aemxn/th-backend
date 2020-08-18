@@ -79,8 +79,8 @@ module.exports = {
 
         return repository
             .create(new_entry)
-            .then(entry => res.status(201).send({ message: 'Entry created successfully', data: entry }))
-            .catch(error => res.status(400).send(error));
+            .then(entry => res.status(201).send({ message: 'Entry created!', data: entry }))
+            .catch(error => res.status(400).send({ message: 'Create failed. Code: 44', data: error }));
     },
 
     update(req, res){
@@ -96,10 +96,10 @@ module.exports = {
                 return res.status(404).send({ message: 'Entry Not Found' })
             }
             return repository.update(entry, update_entry)
-            .then(() => res.status(200).send({ message: 'Entry Updated Successfully.' }))
-            .catch((error) => res.status(400).send(error));
+            .then(() => res.status(200).send({ message: 'Update success' }))
+            .catch((error) => res.status(400).send({ message: 'Update failed', data: error }));
         })
-        .catch(error => res.status(400).send(error));
+        .catch(error => res.status(400).send({ message: 'Update failed. Code: 43', data: error }));
     },
 
     destroy(req, res){
@@ -109,10 +109,10 @@ module.exports = {
                 return res.status(404).send({ message: 'Entry Not Found' })
             }
             return repository.destroy(entry)
-            .then(() => res.status(200).send({ message: 'Entry Deleted Successfully.' }))
-            .catch(error => res.status(400).send(error));
+            .then(() => res.status(200).send({ message: 'Delete success' }))
+            .catch(error => res.status(400).send({ message: 'Delete failed', data: error }));
         })
-        .catch(error => res.status(400).send(error));
+        .catch(error => res.status(400).send({ message: 'Delete failed. Code: 42', data: error }));
     },
 
     async groupByYear(req, res) {
