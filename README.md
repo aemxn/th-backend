@@ -1,7 +1,6 @@
-# Juno
-**Server**
+# Juno (Server)
 
-Description: Bridging the past and the future.
+The backend server for [Juno (Client)][juno-ui].
 
 ## Starting
 
@@ -15,12 +14,22 @@ Clone the repo then,
 1. Set database config in `.env`
 2. Install dependencies - `npm i` 
 3. Running:
-   - Development - `$ npm run dev`
-   - Hot reload (development) - `$ npm run dev-watch`
+   - Development (hot reload) - `$ npm run dev`
    - Production - `$ npm run prod`
-   - Hot reload (production) - `$ npm run watch`
+   - Production (hot reload) - `$ npm run prod-watch`
 
 *See `config/config.js` for environment config routing.*
+
+A successful build will return:
+
+```
+----------------------
+SERVER STARTED
+Listening on port 3000
+Environment: development
+Database: db_name
+----------------------
+```
 
 ## Bootstraping from scratch
 
@@ -123,7 +132,7 @@ findTitle(title){
 
 ### Front-end
 
-https://github.com/aemxn/juno-ui
+[Juno (Client)][juno-ui]
 
 ### Read
 
@@ -134,3 +143,4 @@ https://github.com/aemxn/juno-ui
 [structure-image]: https://i.imgur.com/yB8AqTj.jpg
 [promise-chaining]: https://javascript.info/promise-chaining
 [async-loop]: https://zellwk.com/blog/async-await-in-loops/
+[juno-ui]: http://github.com/aemxn/juno-ui/
