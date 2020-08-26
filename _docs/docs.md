@@ -1,3 +1,5 @@
+<h3>Table of Contents</h3>
+
 - [Structure and Documentation](#structure-and-documentation)
   - [Creating a new route](#creating-a-new-route)
   - [Naming convention](#naming-convention)

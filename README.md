@@ -4,6 +4,8 @@ The backend server for [Juno (Client)][juno-ui].
 
 ## Starting
 
+Read the [docs][docs].
+
 **System dependencies:**
 
 - MySQL (v8+)
@@ -70,3 +72,4 @@ Sequelize config: https://sequelize.org/master/manual/migrations.html#the--code-
 
 [express-generator]: https://expressjs.com/en/starter/generator.html
 [juno-ui]: http://github.com/aemxn/juno-ui/
+[docs]: https://github.com/aemxn/juno-server/blob/master/_docs/docs.md
