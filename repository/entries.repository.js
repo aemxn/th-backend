@@ -32,7 +32,7 @@ module.exports = {
                 },
                 limit,
                 offset,
-                order: [['id', 'DESC']]
+                order: [['date', 'DESC']]
             });
     },
 
@@ -44,7 +44,7 @@ module.exports = {
             where: Entry.sequelize.where(criteria, date),
             limit,
             offset,
-            order: [['id', 'DESC']]
+            order: [['date', 'DESC']]
         });
     },
 
@@ -55,7 +55,7 @@ module.exports = {
     latest() { // return recent 5 entries
         return Entry.findAll({
             limit: 5,
-            order: [['id', 'DESC']]
+            order: [['date', 'DESC']]
         });
     },
 
