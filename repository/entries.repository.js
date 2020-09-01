@@ -55,7 +55,7 @@ module.exports = {
     latest() { // return recent 5 entries
         return Entry.findAll({
             limit: 5,
-            order: [['date', 'DESC']]
+            order: [['id', 'DESC']]
         });
     },
 
