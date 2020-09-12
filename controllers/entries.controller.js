@@ -70,6 +70,27 @@ module.exports = {
         .catch(error => res.status(400).send(error))
     },
 
+    random(req, res) {
+        repository.totalRows().then(val => {
+            var obj = val[0];
+            var total_rows = '';
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const element = obj[key];
+                    total_rows = element['total_rows'];
+                    break;
+                }
+            };
+            
+            var random = util.getRandomInteger(total_rows);
+            return repository.retrieve(random);
+        })
+        .then(entry => {
+            return res.status(200).send(entry);
+        })
+        .catch(error => res.status(400).send(error))
+    },
+
     create(req, res){
         var new_entry = {
             title: req.body.title,

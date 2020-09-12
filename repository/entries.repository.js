@@ -59,6 +59,14 @@ module.exports = {
         });
     },
 
+    totalRows() {
+        return Entry.findAll({
+            attributes: [
+              [Entry.sequelize.fn('COUNT', Entry.sequelize.col('id')), 'total_rows']
+            ]
+        });
+    },
+
     create(new_entry){
         return Entry.create(new_entry);
     },

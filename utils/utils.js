@@ -34,6 +34,11 @@ module.exports = {
         return moment(date).format('YYYY-MM-DD.hhmmss');
     },
 
+
+    getRandomInteger: function(max) {
+        return Math.floor(Math.random() * (max - 1 + 1) ) + 1;
+    },
+
     // escape character for MySQL purpose
     escape_html: function (str) {
         if (typeof str != 'string')

@@ -8,6 +8,7 @@ router.get('/explore/month', controller.exploreMonth);
 router.get('/find-title', controller.findTitle);
 router.get('/latest', controller.latest);
 router.get('/export', controller.exportAll);
+router.get('/random', controller.random);
 router.get('/:id', controller.retrieve);
 
 router.post('/', controller.create);
